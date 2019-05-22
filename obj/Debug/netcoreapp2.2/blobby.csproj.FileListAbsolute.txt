@@ -1,0 +1,11 @@
+C:\Users\t-vijais\Desktop\Azure\blobby\bin\Debug\netcoreapp2.2\blobby.deps.json
+C:\Users\t-vijais\Desktop\Azure\blobby\bin\Debug\netcoreapp2.2\blobby.runtimeconfig.json
+C:\Users\t-vijais\Desktop\Azure\blobby\bin\Debug\netcoreapp2.2\blobby.runtimeconfig.dev.json
+C:\Users\t-vijais\Desktop\Azure\blobby\bin\Debug\netcoreapp2.2\blobby.dll
+C:\Users\t-vijais\Desktop\Azure\blobby\obj\Debug\netcoreapp2.2\blobby.csprojAssemblyReference.cache
+C:\Users\t-vijais\Desktop\Azure\blobby\obj\Debug\netcoreapp2.2\blobby.csproj.CoreCompileInputs.cache
+C:\Users\t-vijais\Desktop\Azure\blobby\obj\Debug\netcoreapp2.2\blobby.AssemblyInfoInputs.cache
+C:\Users\t-vijais\Desktop\Azure\blobby\obj\Debug\netcoreapp2.2\blobby.AssemblyInfo.cs
+C:\Users\t-vijais\Desktop\Azure\blobby\bin\Debug\netcoreapp2.2\blobby.pdb
+C:\Users\t-vijais\Desktop\Azure\blobby\obj\Debug\netcoreapp2.2\blobby.dll
+C:\Users\t-vijais\Desktop\Azure\blobby\obj\Debug\netcoreapp2.2\blobby.pdb
