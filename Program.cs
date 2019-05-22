@@ -11,10 +11,7 @@ namespace blobby
         static void Main(string[] args)
         {
 
-            var first = new ParseCheck();
-            first.CheckParse().GetAwaiter().GetResult();
-               
-            //if successful
+           
             
         }
     }

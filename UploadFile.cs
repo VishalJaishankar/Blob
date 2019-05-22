@@ -8,22 +8,50 @@ using System.Threading.Tasks;
 namespace blobby
 {
     //This class cheks if the environment variable is set
-    public class ParseCheck
+    public class UploadFile
     {
         CloudStorageAccount storageAccount = null;
-        CloudBlobContainer cloudBlobContainer = null;
-        string sourceFile = null;
-        string destinationFile = null;
-        string storageConnectionString = Environment.GetEnvironmentVariable("storageconnectionstring");
-
-        public async Task CheckParse()
+        CloudStorageAccount GetStorageAccount()
         {
+            return storageAccount;
+        }
+
+
+        CloudBlobContainer cloudBlobContainer = null;
+        CloudBlobContainer GetCloudBlobContainer()
+        {
+            return cloudBlobContainer;
+        }
+        string sourceFile;
+        public void setSource(string _sourceFile)
+        {
+            sourceFile = _sourceFile;
+        }
+
+
+        string destinationFile;
+        public void setDest(string _destinationFile)
+        {
+            destinationFile = _destinationFile;
+        }
+
+        string storageConnectionString = Environment.GetEnvironmentVariable("storageconnectionstring");
+        public string GetStorageConnectionString()
+        {
+            return storageConnectionString;
+        }
+
+
+        public async Task Upload()
+        {   
             if(CloudStorageAccount.TryParse(storageConnectionString,out storageAccount))
             {
                 try
                 {
+                    
+                    
                     CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
-                    cloudBlobContainer = cloudBlobClient.GetContainerReference("quickstartblobs" + Guid.NewGuid().ToString());
+                    cloudBlobContainer = cloudBlobClient.GetContainerReference("newcontainer" + Guid.NewGuid().ToString());
                     await cloudBlobContainer.CreateAsync();
                     Console.WriteLine("Created container '{0}'", cloudBlobContainer.Name);
                     Console.WriteLine();
@@ -32,23 +60,27 @@ namespace blobby
                         PublicAccess = BlobContainerPublicAccessType.Blob
                     };
                     await cloudBlobContainer.SetPermissionsAsync(permissions);
-
-                   
+                    //till here the container is created ..now you were put a file that one
+                    /*
+                     string localPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                     string localFileName = "QuickStart_" + Guid.NewGuid().ToString() + ".txt";
+                     sourceFile = Path.Combine(localPath, localFileName);
+                     // Write text to the file.
+                     File.WriteAllText(sourceFile, "Hello, World!");
+                     */
+                     //here you can tell what path it has to take  the
                     string localPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                    string localFileName = "QuickStart_" + Guid.NewGuid().ToString() + ".txt";
+                    string localFileName = sourceFile;
                     sourceFile = Path.Combine(localPath, localFileName);
-                    // Write text to the file.
-                    File.WriteAllText(sourceFile, "Hello, World!");
-
                     Console.WriteLine("Temp file = {0}", sourceFile);
                     Console.WriteLine("Uploading to Blob storage as blob '{0}'", localFileName);
                     Console.WriteLine();
 
-                    // Get a reference to the blob address, then upload the file to the blob.
-                    // Use the value of localFileName for the blob name.
+                    //this were very important 
                     CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(localFileName);
                     await cloudBlockBlob.UploadFromFileAsync(sourceFile);
 
+                    /*
                     // List the blobs in the container.
                     Console.WriteLine("Listing blobs in container.");
                     BlobContinuationToken blobContinuationToken = null;
@@ -63,20 +95,20 @@ namespace blobby
                         }
                     } while (blobContinuationToken != null); 
                     Console.WriteLine();
-
-                    
+                    */
+                    /*
                     destinationFile = sourceFile.Replace(".txt", "_DOWNLOADED.txt");
                     Console.WriteLine("Downloading blob to {0}", destinationFile);
                     Console.WriteLine();
                     await cloudBlockBlob.DownloadToFileAsync(destinationFile, FileMode.Create);
-
-
+                    */
+                    
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error returned from the service: {0}", ex.Message);
                 }
-                finally
+               /* finally
                 {
                     Console.WriteLine("Press any key to delete the sample files and example container.");
                     Console.ReadLine();
@@ -90,7 +122,7 @@ namespace blobby
                     File.Delete(sourceFile);
                     File.Delete(destinationFile);
                 }
-                
+                */
             }
             else
             {
